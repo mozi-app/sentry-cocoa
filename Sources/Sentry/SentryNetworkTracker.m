@@ -157,6 +157,11 @@ static NSString *const SentryNetworkTrackerThreadSanitizerMessage
         return;
     }
 
+    // Check if the request method is "HEAD"
+    NSString *httpMethod = [[sessionTask currentRequest] HTTPMethod];
+    if ([httpMethod isEqualToString:@"HEAD"]) {
+        return; // Exit if it's a HEAD request
+    }
     // Don't measure requests to Sentry's backend
     NSURL *apiUrl = SentrySDK.options.parsedDsn.url;
     if ([url.host isEqualToString:apiUrl.host] && [url.path containsString:apiUrl.path]) {
@@ -326,6 +331,11 @@ static NSString *const SentryNetworkTrackerThreadSanitizerMessage
     NSURL *apiUrl = SentrySDK.options.parsedDsn.url;
     if ([url.host isEqualToString:apiUrl.host] && [url.path containsString:apiUrl.path]) {
         return;
+    }
+    // Check if the request method is "HEAD"
+    NSString *httpMethod = [[sessionTask currentRequest] HTTPMethod];
+    if ([httpMethod isEqualToString:@"HEAD"]) {
+        return; // Exit if it's a HEAD request
     }
 
     id<SentrySpan> netSpan;
