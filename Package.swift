@@ -13,12 +13,12 @@ let package = Package(
         .binaryTarget(
                     name: "Sentry",
                     url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v8.45.0/Sentry.xcframework.zip",
-                    checksum: "18b16b651630b865a91d6cf527ef79363156386e3e8568ae15d5d8718267d535" //Sentry-Static
+                    checksum: "52c758be06bf0c4fd19379aa570a1729432739a1c83676007eefe84a31a7a298" //Sentry-Static
                 ),
         .binaryTarget(
                     name: "Sentry-Dynamic",
                     url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v8.45.0/Sentry-Dynamic.xcframework.zip",
-                    checksum: "8da7680ad34c360503bc0d91ee4a8a690c44100066d913c601cd701a97e21c94" //Sentry-Dynamic
+                    checksum: "19150ed5311ff356a6f2a2a8025659bf0bf74dc02c77168dcd871e0a414e3715" //Sentry-Dynamic
                 ),
         .target ( name: "SentrySwiftUI",
                   dependencies: ["Sentry", "SentryInternal"],
