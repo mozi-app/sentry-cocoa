@@ -124,11 +124,9 @@ generate_xcframework() {
 
 generate_xcframework "Sentry" "-Dynamic"
 
-if [ "$args" != "iOSOnly" ]; then
     generate_xcframework "Sentry" "" staticlib
     
     if [ "$args" != "gameOnly" ]; then
         generate_xcframework "SentrySwiftUI"
         generate_xcframework "Sentry" "-WithoutUIKitOrAppKit" mh_dylib WithoutUIKit
     fi
-fi

@@ -101,7 +101,7 @@ analyze:
 # For more info check out: https://github.com/Carthage/Carthage/releases/tag/0.38.0
 build-xcframework:
 	@echo "--> Carthage: creating Sentry xcframework"
-	./scripts/build-xcframework.sh | tee build-xcframework.log
+	./scripts/build-xcframework.sh iOSOnly | tee build-xcframework.log
 # use ditto here to avoid clobbering symlinks which exist in macOS frameworks
 	ditto -c -k -X --rsrc --keepParent Carthage/Sentry.xcframework Carthage/Sentry.xcframework.zip
 	ditto -c -k -X --rsrc --keepParent Carthage/Sentry-Dynamic.xcframework Carthage/Sentry-Dynamic.xcframework.zip
@@ -140,3 +140,8 @@ release-pod:
 	pod trunk push SentryPrivate.podspec
 	pod trunk push Sentry.podspec
 	pod trunk push SentrySwiftUI.podspec
+
+upload-mozi:
+# upload binary to github release
+	gh auth login
+	gh release create v8.43.0 ./Carthage/Sentry.xcframework.zip ./Carthage/Sentry-Dynamic.xcframework.zip --title "8.43.0" --notes "avoid head http requests" 
