@@ -141,7 +141,14 @@ release-pod:
 	pod trunk push Sentry.podspec
 	pod trunk push SentrySwiftUI.podspec
 
+# get checksum of the file
+get-checksum:
+	@echo "--> Get checksum Sentry.xcframework.zip"
+	swift package compute-checksum ./Carthage/Sentry.xcframework.zip
+	@echo "--> Get checksum Sentry-Dynamic.xcframework.zip"
+	swift package compute-checksum ./Carthage/Sentry-Dynamic.xcframework.zip
+
 upload-mozi:
 # upload binary to github release
 	gh auth login
-	gh release create v8.43.0 ./Carthage/Sentry.xcframework.zip ./Carthage/Sentry-Dynamic.xcframework.zip --title "8.43.0" --notes "avoid head http requests" 
+	gh release create v8.45.0 ./Carthage/Sentry.xcframework.zip ./Carthage/Sentry-Dynamic.xcframework.zip --title "8.45.0" --notes "update to 8.45.0" 
