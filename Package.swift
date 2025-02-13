@@ -1,9 +1,9 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "Sentry",
-    platforms: [.iOS(.v11), .macOS(.v10_13), .tvOS(.v11), .watchOS(.v4)],
+    platforms: [.iOS(.v17), .macOS(.v10_13), .tvOS(.v11), .watchOS(.v4)],
     products: [
         .library(name: "Sentry", targets: ["Sentry"]),
         .library(name: "Sentry-Dynamic", targets: ["Sentry-Dynamic"]),
@@ -12,13 +12,13 @@ let package = Package(
     targets: [
         .binaryTarget(
                     name: "Sentry",
-                    url: "https://github.com/getsentry/sentry-cocoa/releases/download/8.45.0/Sentry.xcframework.zip",
-                    checksum: "03789c7a610c4d9aebb36804a8d5521084cc7459e0333ff7be2d3c380b3d405a" //Sentry-Static
+                    url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v8.45.0/Sentry.xcframework.zip",
+                    checksum: "18b16b651630b865a91d6cf527ef79363156386e3e8568ae15d5d8718267d535" //Sentry-Static
                 ),
         .binaryTarget(
                     name: "Sentry-Dynamic",
-                    url: "https://github.com/getsentry/sentry-cocoa/releases/download/8.45.0/Sentry-Dynamic.xcframework.zip",
-                    checksum: "7bd0ec34705400853ceb99816a801b82251a18ea8f0ba5bce1366c7c2a61eacf" //Sentry-Dynamic
+                    url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v8.45.0/Sentry-Dynamic.xcframework.zip",
+                    checksum: "8da7680ad34c360503bc0d91ee4a8a690c44100066d913c601cd701a97e21c94" //Sentry-Dynamic
                 ),
         .target ( name: "SentrySwiftUI",
                   dependencies: ["Sentry", "SentryInternal"],
