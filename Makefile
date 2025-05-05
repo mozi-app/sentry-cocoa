@@ -141,7 +141,7 @@ release-pod:
 	pod trunk push Sentry.podspec
 	pod trunk push SentrySwiftUI.podspec
 
-# get checksum of the file
+# get checksum of the file, use this info to update the checksum in Package.swift
 get-checksum:
 	@echo "--> Get checksum Sentry.xcframework.zip"
 	swift package compute-checksum ./Carthage/Sentry.xcframework.zip
@@ -151,4 +151,4 @@ get-checksum:
 upload-mozi:
 # upload binary to github release
 	gh auth login
-	gh release create v8.45.0 ./Carthage/Sentry.xcframework.zip ./Carthage/Sentry-Dynamic.xcframework.zip --title "8.45.0" --notes "update to 8.45.0" 
+	gh release create v8.50.0 ./Carthage/Sentry.xcframework.zip ./Carthage/Sentry-Dynamic.xcframework.zip --title "8.50.0" --notes "update to 8.50.0" 
