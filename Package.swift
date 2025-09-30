@@ -22,13 +22,13 @@ var products: [Product] = [
 var targets: [Target] = [
     .binaryTarget(
         name: "Sentry",
-        url: "https://github.com/getsentry/sentry-cocoa/releases/download/8.56.2/Sentry.xcframework.zip",
-        checksum: "f0b8530fc902f56cccf157b5548e83f4b866812b40828bd8e3dca59e6b3171b0" //Sentry-Static
+        url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v8.56.2/Sentry.xcframework.zip",
+        checksum: "6f8ddd34687898c406babf758252890ea7d10f281677ad15e86a40a0bc48e0c6" //Sentry-Static
     ),
     .binaryTarget(
         name: "Sentry-Dynamic",
-        url: "https://github.com/getsentry/sentry-cocoa/releases/download/8.56.2/Sentry-Dynamic.xcframework.zip",
-        checksum: "33be119ee7bb364836bfa686fd0ddb7021b16d765f3498cad1a7f8b1faeed765" //Sentry-Dynamic
+        url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v8.56.2/Sentry-Dynamic.xcframework.zip",
+        checksum: "229a93e63ee8897999f06cdc4c917534a56ec99a6e5d90ff44bd02e2a4fc74d7" //Sentry-Dynamic
     ),
     .binaryTarget(
         name: "Sentry-Dynamic-WithARM64e",

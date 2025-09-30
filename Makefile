@@ -190,3 +190,19 @@ xcode-ci:
 	xcodegen --spec TestSamples/SwiftUITestSample/SwiftUITestSample.yml
 	xcodegen --spec TestSamples/SwiftUICrashTest/SwiftUICrashTest.yml
 	xcodegen --spec Samples/DistributionSample/DistributionSample.yml
+
+build-xcframework-mozi:
+	@echo "--> Carthage: creating Sentry xcframework"
+	./scripts/build-xcframework-local.sh iOSOnly AllVariants 2>&1 | tee build-xcframework.log
+
+# get checksum of the file, use this info to update the checksum in Package.swift
+get-checksum:
+	@echo "--> Get checksum Sentry.xcframework.zip"
+	swift package compute-checksum ./Carthage/Sentry.xcframework.zip
+	@echo "--> Get checksum Sentry-Dynamic.xcframework.zip"
+	swift package compute-checksum ./Carthage/Sentry-Dynamic.xcframework.zip
+
+upload-mozi:
+# upload binary to github release
+	gh auth login
+	gh release create v8.56.2 ./Carthage/Sentry.xcframework.zip ./Carthage/Sentry-Dynamic.xcframework.zip --title "8.56.2" --notes "update to 8.56.2" 
