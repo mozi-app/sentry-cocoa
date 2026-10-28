@@ -137,6 +137,10 @@ final class SentryDefaultNetworkTracker<Dependencies: SentryDefaultNetworkTracke
             return
         }
 
+        if isHeadRequest(currentRequest) {
+            return
+        }
+
         // Don't measure requests to Sentry's backend
         if isSentryRequestOnResume(url, options: options) {
             return
@@ -333,6 +337,10 @@ final class SentryDefaultNetworkTracker<Dependencies: SentryDefaultNetworkTracke
 
         // Don't measure requests to Sentry's backend.
         if isSentryRequestOnStateChange(url, options: options) {
+            return
+        }
+
+        if isHeadRequest(currentRequest) {
             return
         }
 
@@ -784,6 +792,10 @@ final class SentryDefaultNetworkTracker<Dependencies: SentryDefaultNetworkTracke
     private func isTaskSupported(_ task: URLSessionTask) -> Bool {
         // Streams are usually long-lived connections, so we don't measure this transfer type.
         task is URLSessionDataTask || task is URLSessionDownloadTask || task is URLSessionUploadTask
+    }
+
+    private func isHeadRequest(_ request: SentryURLRequestWrapper) -> Bool {
+        request.httpMethod == "HEAD"
     }
 
     private func isSentryRequestOnResume(_ url: URL, options: Options) -> Bool {
