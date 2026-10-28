@@ -2394,6 +2394,10 @@ help-target:
 build-xcframework-mozi:
 	$(MAKE) build-xcframework-static SDKS=iOSOnly
 	$(MAKE) build-xcframework-dynamic SDKS=iOSOnly
+	# macOS tags local builds with com.apple.provenance. ditto --rsrc zips it as ._ files that break the Sentry module.
+	rm -f Sentry.xcframework.zip Sentry-Dynamic.xcframework.zip
+	ditto -c -k --norsrc --noextattr --keepParent Sentry.xcframework Sentry.xcframework.zip
+	ditto -c -k --norsrc --noextattr --keepParent Sentry-Dynamic.xcframework Sentry-Dynamic.xcframework.zip
 
 # Put these checksums in the Sentry and Sentry-Dynamic binary targets of the Package manifests.
 .PHONY: get-checksum

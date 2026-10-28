@@ -61,12 +61,12 @@ if !envSelectsV10 {
         .binaryTarget(
             name: "Sentry",
             url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v9.31.0/Sentry.xcframework.zip",
-            checksum: "270a9dd6668bd8be50c557522e6de53f605278c135671c1f4514b2b5c5c3bf47" //Sentry-Static
+            checksum: "b22932eb59f4ab73cab5891ee8c436b10fede8366a9cadde62fbfd18accc714a" //Sentry-Static
         ),
         .binaryTarget(
             name: "Sentry-Dynamic",
             url: "https://github.com/mozi-app/sentry-cocoa/releases/download/v9.31.0/Sentry-Dynamic.xcframework.zip",
-            checksum: "5da21df9f3909dd65921dbcc9a5eceac8e4ca4e77eacda37f0fbbcc469992d1b" //Sentry-Dynamic
+            checksum: "0d1e47384248e2f1349009effd1cb0f2f790871192cbf4c108a3266e109d87d0" //Sentry-Dynamic
         ),
         .target(
             name: "SentrySwiftUI",
