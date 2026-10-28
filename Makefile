@@ -2388,3 +2388,20 @@ help-%:
 help-target:
 	@[ -n "$(name)" ] || { echo "Usage: make help name=<target>"; exit 1; }; \
 	awk -v T="$(name)" '$(HELP_DETAIL_AWK)' $(MAKEFILE_LIST)
+
+## Mozi fork: build the iOS xcframeworks for the mozi-app/sentry-cocoa release
+.PHONY: build-xcframework-mozi
+build-xcframework-mozi:
+	$(MAKE) build-xcframework-static SDKS=iOSOnly
+	$(MAKE) build-xcframework-dynamic SDKS=iOSOnly
+
+# Put these checksums in the Sentry and Sentry-Dynamic binary targets of the Package manifests.
+.PHONY: get-checksum
+get-checksum:
+	swift package compute-checksum Sentry.xcframework.zip
+	swift package compute-checksum Sentry-Dynamic.xcframework.zip
+
+# Usage: make upload-mozi VERSION=9.31.0
+.PHONY: upload-mozi
+upload-mozi:
+	gh release create v$(VERSION) Sentry.xcframework.zip Sentry-Dynamic.xcframework.zip --repo mozi-app/sentry-cocoa --target main --title "$(VERSION)" --notes "Sentry $(VERSION) with the Mozi patch that ignores HEAD requests"
